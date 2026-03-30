@@ -52,6 +52,24 @@ In the Streamlit app:
 4. Click `Generate Comparison Files`
 5. Preview or download the results
 
+## Upload File Names
+
+These are the file headers / file names expected by the app upload flow:
+
+### EKCC
+
+- `ekcc_state.csv`
+- `ekcc_district.csv`
+- `ekcc_subdistrict.csv`
+- `ekcc_village.csv`
+
+### LGD
+
+- `lgd_state.csv`
+- `lgd_district.csv`
+- `lgd_subdistrict.csv`
+- `lgd_village.csv`
+
 ## Comparison Logic
 
 ### Insert
