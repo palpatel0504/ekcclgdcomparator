@@ -1,0 +1,7 @@
+data/
+required_columns_output/
+comparison_output/
+streamlit_workspace/
+__pycache__/
+*.pyc
+.DS_Store
