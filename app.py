@@ -197,5 +197,6 @@ with tab_comparison:
         )
 
 
-# with st.expander("How To Run"):
-#     st.code("streamlit run /Users/palrpatel/Desktop/FINALFIX/app.py", language="bash")
+# # with st.expander("How To Run"):
+# #     st.code("streamlit run /Users/palrpatel/Desktop/FINALFIX/app.py", language="bash")
+

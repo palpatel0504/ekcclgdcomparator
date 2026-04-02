@@ -190,17 +190,26 @@ def write_comparison_files(
     input_dir: Path = INPUT_DIR,
     output_dir: Path = OUTPUT_DIR,
 ) -> dict[str, dict[str, pd.DataFrame]]:
+    generated_outputs: dict[str, dict[str, pd.DataFrame]] = {}
+    comparable_entities = [
+        entity_name
+        for entity_name in ENTITY_CONFIG
+        if output_exists(input_dir, "ekcc", entity_name)
+        and output_exists(input_dir, "lgd", entity_name)
+    ]
+
+    if not comparable_entities:
+        print("No comparable entities found.")
+        print("Make sure both EKCC and LGD files exist inside required_columns_output for at least one entity.")
+        print(f"Checked folder: {input_dir}")
+        return generated_outputs
+
     output_dir.mkdir(parents=True, exist_ok=True)
     for existing_file in output_dir.glob("*.csv"):
         existing_file.unlink()
-    generated_outputs: dict[str, dict[str, pd.DataFrame]] = {}
 
-    for entity_name, config in ENTITY_CONFIG.items():
-        if not (
-            output_exists(input_dir, "ekcc", entity_name)
-            and output_exists(input_dir, "lgd", entity_name)
-        ):
-            continue
+    for entity_name in comparable_entities:
+        config = ENTITY_CONFIG[entity_name]
 
         ekcc_df = prepare_for_compare(read_output(input_dir, "ekcc", entity_name), config["key"])
         lgd_df = prepare_for_compare(read_output(input_dir, "lgd", entity_name), config["key"])
